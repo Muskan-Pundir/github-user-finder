@@ -1,0 +1,150 @@
+/* Light Mode */
+.light-mode {
+  color: #171819;
+}
+
+.light-mode .repo-card {
+  background-color: white;
+  color: #171819;
+  border: 1px solid #d1d5da;
+}
+
+.light-mode h2 {
+  color: #171819;
+}
+
+.light-mode p {
+  color: #586069;
+}
+
+.light-mode .user-details span {
+  color: #0a0e12;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #161b22;
+  color: #e6edf3;
+}
+
+.dark-mode .repo-card {
+  background-color: #0d1117;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+}
+
+.dark-mode h2 {
+  color: #e6edf3;
+}
+
+.dark-mode p {
+  color: #c9d1d9;
+}
+
+.dark-mode .user-details span {
+  color: #c9d1d9;
+}
+
+.light-mode-chip {
+  color: #0a0e12;
+}
+
+.dark-mode-chip {
+  background-color: white;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 3rem;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(229, 21, 21, 0.1);
+  justify-content: center;
+}
+
+.user-sub-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.user-info {
+  width: 40%;
+}
+
+.repo-list {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.github-user-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 4px solid #090b0d;
+  max-width: 15rem;
+}
+
+.image-dark-mode img {
+  border: 4px solid rgb(99, 111, 117);
+}
+
+.image-light-mode img {
+  border: 4px solid #090b0d;
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0;
+  color: #171819;
+  text-align: center;
+}
+
+p {
+  color: #586069;
+  font-size: 15px;
+  text-align: center;
+}
+
+.user-details {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #0a0e12;
+  text-align: center;
+}
+
+.user-details span {
+  font-weight: 500;
+}
+
+.no-data-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.no-data-found img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+@media (max-width: 768px) {
+  .repo-card {
+    width: 100%; /* Chhoti screen par 1 column ho jaye */
+  }
+}

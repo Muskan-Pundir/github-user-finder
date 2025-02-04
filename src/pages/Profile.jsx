@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Components/Navbar";
 import UserCard from "../components/UserCard";
 import { useParams } from "react-router";
-import axios from "axios"; // Ensure axios is imported
+import axios from "axios";
 import { setError, setUserDetails } from "../store/features/userSlice";
 import { CONSTANTS } from "../Constants";
 
-const Profile = () => {
+const Profile = ({ theme, setTheme }) => {
   const userData = useSelector((state) => state.user.userData);
   const error = useSelector((state) => state.user.errorMessage);
   const { username } = useParams();
@@ -35,13 +35,13 @@ const Profile = () => {
       }
     };
 
-    fetchUser(); // Call the function
-  }, [username, dispatch]); // Add dependencies to avoid stale closures
+    fetchUser();
+  }, [username, dispatch]);
 
   return (
     <>
-      <Navbar />
-      <UserCard user={userDetails} error={errorMessage} />
+      <Navbar theme={theme} setTheme={setTheme} />
+      <UserCard user={userDetails} error={errorMessage} theme={theme} />
     </>
   );
 };

@@ -1,29 +1,20 @@
-// import { Link } from "react-router-dom";
-// import ThemeToggle from "./ThemeToggle";
-
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-// import ThemeToggle from "./ThemeToggle";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { Snackbar } from "@mui/material";
+import { Snackbar, Tooltip } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setError,
-  setMessage,
-  setUserDetails,
-  UserSlice,
-} from "../store/features/userSlice";
-import { useParams } from "react-router";
+import { setError, setUserDetails } from "../store/features/userSlice";
 import { CONSTANTS } from "../Constants";
+import { Home } from "@mui/icons-material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,7 +46,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -67,11 +57,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userName, setUserName] = React.useState("");
-
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -79,7 +68,6 @@ const Navbar = () => {
   };
 
   const messageData = useSelector((state) => state.user.message);
-
   const [message, setMessage] = React.useState(messageData);
 
   const searchUserHandler = () => {};
@@ -92,24 +80,25 @@ const Navbar = () => {
             `https://api.github.com/users/${userName}`
           );
           if (res.status === 200) {
-            dispatch(setUserDetails(res.data)); // Dispatch user data
-            // dispatch(setMessage(CONSTANTS.USER_FOUND));
+            dispatch(setUserDetails(res.data));
             setMessage(CONSTANTS.USER_FOUND);
             dispatch(setError(""));
             navigate(`/profile/${userName}`);
           }
         } catch (error) {
           navigate(`/profile/${userName}`);
-          // dispatch(setError(CONSTANTS.ERROR_MESSAGE));
           setMessage(CONSTANTS.ERROR_MESSAGE);
           setSnackbarOpen(true);
         }
       } else {
-        // dispatch(setMessage(CONSTANTS.ENTER_A_USERNAME));
         setMessage("Please enter a username");
         setSnackbarOpen(true);
       }
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   const onSearchInputChangeHandler = (e) => {
@@ -117,7 +106,13 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar
+      position="sticky"
+      sx={{
+        backgroundColor: theme === "light" ? "black" : "#424242",
+        color: "white",
+      }}
+    >
       <Toolbar>
         <IconButton
           size="large"
@@ -125,8 +120,9 @@ const Navbar = () => {
           color="inherit"
           aria-label="open drawer"
           sx={{ mr: 2 }}
+          onClick={() => navigate("/")}
         >
-          <MenuIcon />
+          <Home />
         </IconButton>
         <Typography
           variant="h6"
@@ -151,10 +147,18 @@ const Navbar = () => {
             inputProps={{ "aria-label": "search" }}
             onChange={onSearchInputChangeHandler}
             onKeyDown={onEnterHandler}
+            sx={{ color: "white" }}
           />
         </Search>
-
-        {/* <ThemeToggle /> */}
+        <Tooltip title={theme === "light" ? "Set Dark Mode" : "Set Light Mode"}>
+          <IconButton
+            className="theme-toggle"
+            sx={{ color: "white", ml: 2 }}
+            onClick={toggleTheme}
+          >
+            {theme === "light" ? <DarkModeIcon /> : <WbSunnyIcon />}
+          </IconButton>
+        </Tooltip>
       </Toolbar>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -162,7 +166,6 @@ const Navbar = () => {
         onClose={handleClose}
         message={message}
         autoHideDuration={2000}
-        // key={vertical + horizontal}
       />
     </AppBar>
   );

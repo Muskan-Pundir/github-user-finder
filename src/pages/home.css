@@ -1,59 +1,97 @@
 /* Home.css */
 .home-container {
-    padding: 16px;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .github-image {
-    max-width: 100%;
-    height: auto;
-    border-radius:10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.github-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.welcome-text {
+  font-size: 45px !important;
+  text-align: center;
+}
+
+.subtitle-text {
+  font-size: 34px !important;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
   .welcome-text {
-    font-size: 30px;
-    font-weight: bold;
-    color: #2d2d2d;
-    margin-bottom: 10px;
+    font-size: 42px !important;
   }
-  
+
   .subtitle-text {
-    font-size: 24px;
-    color: #555;
-    margin-bottom: 20px;
+    font-size: 34px !important;
   }
-  
-  .error-message {
-    color: red;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .welcome-text {
-      font-size: 28px;
-    }
-  
-    .subtitle-text {
-      font-size: 20px;
-    }
+}
+
+@media (max-width: 768px) {
+  .github-image {
+    max-width: 350px;
   }
 
-  @media (max-width : 500px) {
-    .github-image{
-        scale: 0.8;
-    }
+  .welcome-text {
+    font-size: 40px !important;
   }
 
-  @media (max-width : 400px) {
-    .github-image{
-        scale: 0.6;
-    }
+  .subtitle-text {
+    font-size: 32px !important;
   }
-  
+}
+
+@media (max-width: 600px) {
+  .github-image {
+    max-width: 280px;
+  }
+
+  .welcome-text {
+    font-size: 34px !important;
+  }
+
+  .subtitle-text {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-image {
+    max-width: 220px;
+  }
+
+  .welcome-text {
+    font-size: 30px !important;
+  }
+
+  .subtitle-text {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .github-image {
+    max-width: 180px;
+  }
+
+  .welcome-text {
+    font-size: 25px !important;
+  }
+
+  .subtitle-text {
+    font-size: 12px !important;
+  }
+}

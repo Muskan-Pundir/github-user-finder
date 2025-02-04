@@ -2,21 +2,28 @@ import { useState } from "react";
 import axios from "axios";
 import UserCard from "../components/UserCard";
 import { Box, Grid2, Typography } from "@mui/material";
-import githubImage from "../assets/images/githubImage.png";
+import githubLightImage from "../assets/images/gitLight.png";
+import githubDarkImage from "../assets/images/gitLight.png";
 import Navbar from "../Components/Navbar";
 import "../pages/home.css";
-const Home = () => {
+const Home = ({ theme, setTheme }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
 
   return (
-    <div className="home-container">
-      <Navbar />
+    <div className={`home-container app-container ${theme}`}>
+      <Navbar theme={theme} setTheme={setTheme} />
       {/* <SearchBar onSearch={fetchUser} /> */}
 
       <Box sx={{ mt: 2 }}>
         <div className="grid-container">
-          <Grid2 container gap={"50px"}>
+          <Grid2
+            container
+            gap={"50px"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
             <Grid2
               item
               sx={{
@@ -24,27 +31,36 @@ const Home = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                flexWrap: "wrap",
               }}
               className="github-image"
             >
               <div>
-                <img src={githubImage} />
+                <img
+                  width={"100%"}
+                  height={"100%"}
+                  src={theme === "light" ? githubLightImage : githubDarkImage}
+                />
               </div>
             </Grid2>
-            <Grid2 item>
-              <Grid2 container>
+            <Grid2
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              flexWrap={"wrap"}
+            >
+              <Grid2>
                 <Grid2 item>
-                  <Typography fontSize={"40px"}>
+                  <Typography fontFamily={"cursive"} className="welcome-text">
                     Welcome to Github User Finder App
                   </Typography>
                 </Grid2>
               </Grid2>
               <Grid2>
-                <div className="welcome-text">
-                  <Typography fontSize={"30px"}>
-                    Just one click away from your information
-                  </Typography>
-                </div>
+                <Typography fontFamily={"monospace"} className="subtitle-text">
+                  Search a user to get the information
+                </Typography>
               </Grid2>
             </Grid2>
           </Grid2>
