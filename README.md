@@ -7,13 +7,41 @@ Routing: React Router
 API Requests: Axios
 Theme Management: useState, localStorage
 
-Features:
-~ Search GitHub users by username
-~ Display user details (name, bio, avatar, followers, repositories)
-~ Show public and private repositories with their languages
-~ Light/Dark mode toggle
-~ Redux state management for API data
-~ Responsive UI with Material-UI & Tailwind CSS
+**Features**
+
+📍 Search for GitHub users by username
+
+📍 View user details such as profile picture, bio, followers, and repositories
+
+📍 Responsive design for mobile and desktop
+
+📍 Built with React and Vite for fast performance
+
+# Getting Started
+
+**Prerequisites:** 
+~ Make sure you have the following installed:
+    Node.js (version 14 or later)
+    npm (comes with Node.js).
+~ Installation
+    Clone the repository:
+    git clone <repository-url>
+    cd github-user-finder
+~ Install dependencies:
+    npm install
+~ Running the Application
+    To start the development server, run: npm run dev
+This will start the app and provide a local URL (e.g., http://localhost:5173/) where you can access it.
+
+Building for Production: 
+To create an optimized production build, run:
+npm run build
+~ The output will be available in the dist folder.
+
+Deploying
+You can deploy the build using services like Vercel, Netlify, or GitHub Pages.
+
+
 
 
 # React + Vite
